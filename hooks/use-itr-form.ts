@@ -22,10 +22,12 @@ export function useITRForm<T extends z.ZodType>({
 }: UseITRFormOptions<T>) {
   const [isLoading, setIsLoading] = useState(true);
   const [autoSaveStatus, setAutoSaveStatus] = useState<'idle' | 'saving' | 'saved'>('idle');
-
-  const form = useForm<z.infer<T>>({
+  
+  type FormFields = z.infer<T>;
+  
+  const form = useForm<FormFields>({
     resolver: zodResolver(schema),
-    defaultValues,
+    defaultValues: (defaultValues || {}) as FormFields,
     mode: 'onChange',
   });
 

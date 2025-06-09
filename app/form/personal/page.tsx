@@ -70,22 +70,22 @@ export default function PersonalDetailsForm() {
       nationality: 'Indian',
       residential: 'resident',
       address: {
-        flatNo: '101',
-        area: 'MG Road',
-        city: 'Bengaluru',
-        state: 'Karnataka',
-        pincode: '560001',
+        flatNo: '',
+        area: '',
+        city: '',
+        state: '',
+        pincode: '',
         country: 'India', // defaulted value
       },
       bankAccounts: [
-        // {
-        //   id: '1', // Unique identifier
-        //   bankName: 'State Bank of India',
-        //   accountNumber: '12345678', // At least 8 digits
-        //   ifscCode: 'SBIN0001234', // Exactly 11 characters
-        //   accountType: 'savings', // One of the enum values
-        //   isPrimary: false, // Default value
-        // },
+        {
+          id: '1', // Unique identifier
+          bankName: 'State Bank of India',
+          accountNumber: '12345678', // At least 8 digits
+          ifscCode: 'SBIN0001234', // Exactly 11 characters
+          accountType: 'savings', // One of the enum values
+          isPrimary: true, // Default value
+        },
         // {
         //   id: '2',
         //   bankName: 'HDFC Bank',
@@ -607,12 +607,7 @@ export default function PersonalDetailsForm() {
             >
               Back to Home
             </Button>
-            <Button type="submit" onClick={() => {
-                                const nextStep = getNextStep();
-                                if (nextStep) {
-                                    router.push(`/form/${nextStep}`);
-                                }
-                            }}>
+            <Button type="submit">
               Save & Continue
             </Button>
           </div>

@@ -49,7 +49,7 @@ export function SummaryCard({
             </CollapsibleTrigger>
             <div className="flex items-center gap-2">
               {printable && (
-                <Button variant="outline\" size="sm\" onClick={handlePrint}>
+                <Button variant="outline" size="sm" onClick={handlePrint}>
                   <Printer className="h-4 w-4 mr-2" />
                   Print
                 </Button>

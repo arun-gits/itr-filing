@@ -150,7 +150,7 @@ export default function TaxSummaryForm() {
           {/* Salary Income */}
           <Text style={styles.boldText}>Salary Income:</Text>
           {itrData.incomeDetails.salaryIncome.hasIncome ? (
-            itrData.incomeDetails.salaryIncome.employers.map((employer: any, index: number) => (
+            itrData.incomeDetails?.salaryIncome.employers.map((employer: any, index: number) => (
               <View key={index} style={{ marginLeft: 10, marginBottom: 5 }}>
                 <Text style={styles.text}>Employer: {employer.employerName}</Text>
                 <Text style={styles.text}>Gross Salary: {employer.grossSalary}</Text>
@@ -163,7 +163,7 @@ export default function TaxSummaryForm() {
 
           {/* House Property Income */}
           <Text style={{ ...styles.boldText, marginTop: 5 }}>House Property Income:</Text>
-          {itrData.incomeDetails.housePropertyIncome.hasIncome ? (
+          {itrData.incomeDetails?.housePropertyIncome.hasIncome ? (
             itrData.incomeDetails.housePropertyIncome.properties.map((property: any, index: number) => (
               <View key={index} style={{ marginLeft: 10, marginBottom: 5 }}>
                 <Text style={styles.text}>Type: {property.propertyType}</Text>
@@ -178,7 +178,7 @@ export default function TaxSummaryForm() {
 
           {/* Capital Gains */}
           <Text style={{ ...styles.boldText, marginTop: 5 }}>Capital Gains:</Text>
-          {itrData.incomeDetails.capitalGains.hasIncome ? (
+          {itrData.incomeDetails?.capitalGains.hasIncome ? (
             <View style={{ marginLeft: 10 }}>
               <Text style={styles.text}>Short Term Gains: {itrData.incomeDetails.capitalGains.shortTermGains}</Text>
               <Text style={styles.text}>Long Term Gains: {itrData.incomeDetails.capitalGains.longTermGains}</Text>
@@ -189,7 +189,7 @@ export default function TaxSummaryForm() {
 
           {/* Other Sources */}
           <Text style={{ ...styles.boldText, marginTop: 5 }}>Other Sources Income:</Text>
-          {itrData.incomeDetails.otherSources.hasIncome ? (
+          {itrData.incomeDetails?.otherSources.hasIncome ? (
             <View style={{ marginLeft: 10 }}>
               <Text style={styles.text}>Interest Income: {itrData.incomeDetails.otherSources.interestIncome}</Text>
               <Text style={styles.text}>Dividend Income: {itrData.incomeDetails.otherSources.dividendIncome}</Text>
@@ -206,21 +206,21 @@ export default function TaxSummaryForm() {
 
           <Text style={styles.boldText}>Section 80C:</Text>
           <View style={{ marginLeft: 10 }}>
-            <Text style={styles.text}>Life Insurance: {itrData.deductions.section80C.lifeInsurance}</Text>
-            <Text style={styles.text}>EPF: {itrData.deductions.section80C.epf}</Text>
+            <Text style={styles.text}>Life Insurance: {itrData?.deductions.section80C.lifeInsurance}</Text>
+            <Text style={styles.text}>EPF: {itrData?.deductions.section80C.epf}</Text>
             {/* Add more 80C items */}
-            <Text style={styles.text}>Total 80C: {itrData.deductions.section80C.lifeInsurance + itrData.deductions.section80C.epf}</Text>
+            <Text style={styles.text}>Total 80C: {itrData?.deductions.section80C.lifeInsurance + itrData?.deductions.section80C.epf}</Text>
           </View>
 
           <Text style={{ ...styles.boldText, marginTop: 5 }}>Section 80D (Health Insurance):</Text>
           <View style={{ marginLeft: 10 }}>
-            <Text style={styles.text}>Self: {itrData.deductions.section80D.healthInsuranceSelf}</Text>
-            <Text style={styles.text}>Family: {itrData.deductions.section80D.healthInsuranceFamily}</Text>
+            <Text style={styles.text}>Self: {itrData?.deductions.section80D.healthInsuranceSelf}</Text>
+            <Text style={styles.text}>Family: {itrData?.deductions.section80D.healthInsuranceFamily}</Text>
             {/* Add more 80D items */}
-            <Text style={styles.text}>Total 80D: {itrData.deductions.section80D.healthInsuranceSelf + itrData.deductions.section80D.healthInsuranceFamily}</Text>
+            <Text style={styles.text}>Total 80D: {itrData?.deductions.section80D.healthInsuranceSelf + itrData?.deductions.section80D.healthInsuranceFamily}</Text>
           </View>
 
-          {itrData.deductions.otherDeductions.section80G.length > 0 && (
+          {itrData?.deductions.otherDeductions.section80G.length > 0 && (
             <>
               <Text style={{ ...styles.boldText, marginTop: 5 }}>Section 80G (Donations):</Text>
               <View style={styles.table}>
@@ -230,7 +230,7 @@ export default function TaxSummaryForm() {
                   <View style={styles.tableColHeader}><Text style={styles.tableCellHeader}>Qualifying Amount</Text></View>
                   <View style={styles.tableColHeader}><Text style={styles.tableCellHeader}>Deduction %</Text></View>
                 </View>
-                {itrData.deductions.otherDeductions.section80G.map((donation: any, index: number) => (
+                {itrData?.deductions.otherDeductions.section80G.map((donation: any, index: number) => (
                   <View style={styles.tableRow} key={index}>
                     <View style={styles.tableCol}><Text style={styles.tableCell}>{donation.doneeInstitution}</Text></View>
                     <View style={styles.tableCol}><Text style={styles.tableCell}>{donation.amount}</Text></View>
@@ -246,28 +246,28 @@ export default function TaxSummaryForm() {
         {/* Tax Summary */}
         <View style={styles.section}>
           <Text style={styles.subHeader}>Tax Summary</Text>
-          <Text style={styles.text}><Text style={styles.boldText}>Total Income:</Text> {itrData.taxSummary.totalIncome}</Text>
-          <Text style={styles.text}><Text style={styles.boldText}>Total Deductions:</Text> {itrData.taxSummary.totalDeductions}</Text>
-          <Text style={styles.text}><Text style={styles.boldText}>Taxable Income:</Text> {itrData.taxSummary.taxableIncome}</Text>
-          <Text style={styles.text}><Text style={styles.boldText}>Tax Before Relief:</Text> {itrData.taxSummary.taxBeforeRelief}</Text>
-          <Text style={styles.text}><Text style={styles.boldText}>Relief Under 89:</Text> {itrData.taxSummary.reliefUnder89}</Text>
-          <Text style={styles.text}><Text style={styles.boldText}>Tax After Relief:</Text> {itrData.taxSummary.taxAfterRelief}</Text>
-          <Text style={styles.text}><Text style={styles.boldText}>Education Cess:</Text> {itrData.taxSummary.educationCess}</Text>
-          <Text style={styles.text}><Text style={styles.boldText}>Total Tax Liability:</Text> {itrData.taxSummary.totalTaxLiability}</Text>
-          <Text style={styles.text}><Text style={styles.boldText}>TDS Deducted:</Text> {itrData.taxSummary.tdsDeducted}</Text>
+          <Text style={styles.text}><Text style={styles.boldText}>Total Income:</Text> {itrData?.taxSummary?.totalIncome}</Text>
+          <Text style={styles.text}><Text style={styles.boldText}>Total Deductions:</Text> {itrData?.taxSummary?.totalDeductions}</Text>
+          <Text style={styles.text}><Text style={styles.boldText}>Taxable Income:</Text> {itrData?.taxSummary?.taxableIncome}</Text>
+          <Text style={styles.text}><Text style={styles.boldText}>Tax Before Relief:</Text> {itrData?.taxSummary?.taxBeforeRelief}</Text>
+          <Text style={styles.text}><Text style={styles.boldText}>Relief Under 89:</Text> {itrData?.taxSummary?.reliefUnder89}</Text>
+          <Text style={styles.text}><Text style={styles.boldText}>Tax After Relief:</Text> {itrData?.taxSummary?.taxAfterRelief}</Text>
+          <Text style={styles.text}><Text style={styles.boldText}>Education Cess:</Text> {itrData?.taxSummary?.educationCess}</Text>
+          <Text style={styles.text}><Text style={styles.boldText}>Total Tax Liability:</Text> {itrData?.taxSummary?.totalTaxLiability}</Text>
+          <Text style={styles.text}><Text style={styles.boldText}>TDS Deducted:</Text> {itrData?.taxSummary?.tdsDeducted}</Text>
           <Text style={styles.text}>
             <Text style={styles.boldText}>
-              {itrData.taxSummary.refundOrPayable < 0 ? 'Refund Due:' : 'Tax Payable:'}
-            </Text> {Math.abs(itrData.taxSummary.refundOrPayable)}
+              {itrData?.taxSummary?.refundOrPayable < 0 ? 'Refund Due:' : 'Tax Payable:'}
+            </Text> {Math.abs(itrData?.taxSummary?.refundOrPayable)}
           </Text>
         </View>
 
         {/* Verification */}
         <View style={styles.section}>
           <Text style={styles.subHeader}>Verification</Text>
-          <Text style={styles.text}><Text style={styles.boldText}>Place:</Text> {itrData.taxSummary.verification.place}</Text>
-          <Text style={styles.text}><Text style={styles.boldText}>Date:</Text> {itrData.taxSummary.verification.date}</Text>
-          <Text style={styles.text}><Text style={styles.boldText}>Declaration Accepted:</Text> {itrData.taxSummary.verification.declarationAccepted ? 'Yes' : 'No'}</Text>
+          <Text style={styles.text}><Text style={styles.boldText}>Place:</Text> {itrData.taxSummary?.verification.place}</Text>
+          <Text style={styles.text}><Text style={styles.boldText}>Date:</Text> {itrData.taxSummary?.verification.date}</Text>
+          <Text style={styles.text}><Text style={styles.boldText}>Declaration Accepted:</Text> {itrData.taxSummary?.verification.declarationAccepted ? 'Yes' : 'No'}</Text>
         </View>
 
       </Page>
@@ -441,7 +441,7 @@ export default function TaxSummaryForm() {
       toast.success('Report downloaded successfully!');
     } catch (error) {
       console.error('Error generating or downloading PDF:', error);
-      toast.error('Failed to download report. Please try again.');
+      toast.error('Please try again after filling all required information.');
     } finally {
     }
   };

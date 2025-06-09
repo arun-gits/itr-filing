@@ -583,12 +583,7 @@ export default function IncomeDetailsForm() {
                         >
                             Previous
                         </Button>
-                        <Button type="submit" onClick={() => {
-                                const nextStep = getNextStep();
-                                if (nextStep) {
-                                    router.push(`/form/${nextStep}`);
-                                }
-                            }}>
+                        <Button type="submit">
                             Save & Continue
                         </Button>
                     </div>
